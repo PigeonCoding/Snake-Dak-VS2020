@@ -8,6 +8,7 @@ typedef enum GameScreen { LOGO = 0, TITLE, DEAD, GAMEPLAY } GameScreen;
 GameScreen currentScreen;
 
 int framesCounter = 0;
+Sound fxWav;
 
 Player snake;
 
@@ -24,7 +25,10 @@ void init() {
     currentScreen = LOGO;
 
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "Snake Dak");
+    InitAudioDevice();
     SetTargetFPS(60);
+
+    fxWav = LoadSound("ressources/food.wav");
     
     snake.PlayerInit({ 10, 10 }, cellSize);
     snake.size = 2;   
@@ -99,6 +103,7 @@ void mouvement() {
 
     if (snake.pos.x == snake.foodPosX && snake.pos.y == snake.foodPosY) {
         snake.size++;
+        PlaySound(fxWav);
         snake.foodPosX = -100;
         snake.foodPosY = -100;
         snake.hasEaten = false;
