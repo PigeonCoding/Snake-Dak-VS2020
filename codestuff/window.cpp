@@ -4,6 +4,11 @@
 
 using namespace std;
 
+typedef enum GameScreen { LOGO = 0, TITLE, DEAD, GAMEPLAY } GameScreen;
+GameScreen currentScreen;
+
+int framesCounter = 0;
+
 Player snake;
 
 const int SCREENWIDTH = 600;
@@ -16,6 +21,8 @@ int dir = 0;
 int foodPos;
 
 void init() {
+    currentScreen = LOGO;
+
     InitWindow(SCREENWIDTH, SCREENHEIGHT, "Snake Dak");
     SetTargetFPS(60);
     
@@ -29,13 +36,28 @@ void close() {
 
 void draw() {
     ClearBackground(BLACK);
-    snake.DrawPlayer();
 
-    if (!snake.hasEaten) {
-        snake.spawnFood();
+    switch (currentScreen)
+    {
+        case LOGO:
+            DrawText("made by pigeon", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
+            framesCounter++;
+            break;
+        case TITLE:
+            DrawText("press Space to start the game", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
+            ClearBackground(BLACK);
+            if (IsKeyDown(KEY_SPACE)) { currentScreen = GAMEPLAY; }
+            break;
+        case GAMEPLAY:
+            snake.DrawPlayer();
+
+            if (!snake.hasEaten) {
+                snake.spawnFood();
+            }
+
+            DrawRectangle(snake.foodPosX, snake.foodPosY, cellSize, cellSize, GREEN);
     }
     
-    DrawRectangle(snake.foodPosX, snake.foodPosY, cellSize, cellSize, GREEN);
 }
 
 void InputManager() {
@@ -95,6 +117,8 @@ void run()
 {
     while (!WindowShouldClose() && !snake.dead)
     {
+        if (framesCounter == 50) { currentScreen = TITLE; framesCounter++;}
+
         InputManager();
         mouvement();
 
