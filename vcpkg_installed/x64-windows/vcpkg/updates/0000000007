@@ -1,0 +1,7 @@
+Package: raylib
+Feature: use-audio
+Architecture: x64-windows
+Multi-Arch: same
+Description: Build raylib with audio module
+Type: Port
+Status: install ok installed

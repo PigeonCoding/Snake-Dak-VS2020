@@ -1,0 +1,10 @@
+Package: raylib
+Version: 4.2.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 9e0ad00f4ad7cf58a11aa882e0db1a0c84cb0ec6a104fed6559ebbf3b64fb66b
+Description: A simple and easy-to-use library to enjoy videogames programming
+Type: Port
+Default-Features: use-audio
+Status: install ok half-installed
