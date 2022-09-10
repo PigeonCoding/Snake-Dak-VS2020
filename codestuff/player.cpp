@@ -18,7 +18,6 @@ void Player::addPos(Vector2 poss) {
 void Player::MoveTimer(int delay) {
 	if (Player::frameTimer > delay)
 	{
-		//std::cout << "delay off\n";
 		Player::frameTimer = 0;
 		Player::canMove = true;
 	}
