@@ -13,8 +13,6 @@ void Player::addPos(Vector2 poss) {
 	Player::PlayerLastPos.push_back(Player::pos);
 	Player::pos.x += poss.x;
 	Player::pos.y += poss.y;
-
-
 }
 
 void Player::MoveTimer(int delay) {
