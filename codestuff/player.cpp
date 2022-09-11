@@ -9,7 +9,7 @@ void Player::PlayerInit(Vector2 startingPos, int cell) {
 }
 
 void Player::addPos(Vector2 poss) {
-	
+
 	Player::PlayerLastPos.push_back(Player::pos);
 	Player::pos.x += poss.x;
 	Player::pos.y += poss.y;
@@ -61,7 +61,7 @@ void Player::spawnFood() {
 			if (gudX + cellSize / 2 != PlayerLastActivePos[f].x && gudY + cellSize / 2 != PlayerLastActivePos[f].y) {
 				isGood = true;
 			}
-			else 
+			else
 			{
 				isGood = false;
 			}
@@ -80,5 +80,3 @@ void Player::spawnFood() {
 		hasEaten = true;
 	}
 }
-
-

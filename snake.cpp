@@ -5,7 +5,7 @@ int main()
     init();
 
     run();
-    
+
     close();
 
     return 0;

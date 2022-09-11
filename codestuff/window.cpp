@@ -29,9 +29,9 @@ void init() {
     SetTargetFPS(60);
 
     fxWav = LoadSound("ressources/food.wav");
-    
+
     snake.PlayerInit({ 10, 10 }, cellSize);
-    snake.size = 2;   
+    snake.size = 2;
 }
 
 void close() {
@@ -41,24 +41,24 @@ void close() {
 
 
 void InputManager() {
-    if (IsKeyPressed(KEY_S)){
+    if (IsKeyPressed(KEY_S)) {
         dir = -1;
     }
-    if (IsKeyPressed(KEY_W)){
+    if (IsKeyPressed(KEY_W)) {
         dir = 1;
 
     }
-    if (IsKeyPressed(KEY_D)){
+    if (IsKeyPressed(KEY_D)) {
         dir = -2;
 
     }
-    if (IsKeyPressed(KEY_A)){
+    if (IsKeyPressed(KEY_A)) {
         dir = 2;
     }
 }
 
 void mouvement() {
-    Vector2 direction = {0, 0};
+    Vector2 direction = { 0, 0 };
 
     if (snake.canMove) {
         if (dir == 1) {
@@ -85,7 +85,7 @@ void mouvement() {
         snake.hasEaten = false;
     }
 
-    if (snake.pos.x > 0 && snake.pos.x < SCREENWIDTH - cellSize && snake.pos.y > 0 && snake.pos.y < SCREENHEIGHT){}
+    if (snake.pos.x > 0 && snake.pos.x < SCREENWIDTH - cellSize && snake.pos.y > 0 && snake.pos.y < SCREENHEIGHT) {}
     else {
         dir = 0;
         snake.dead = true;
@@ -109,7 +109,7 @@ void reset() {
 }
 
 void draw() {
-   
+
 
 }
 
@@ -121,7 +121,7 @@ void run()
 
         BeginDrawing();
 
-        if (snake.dead) 
+        if (snake.dead)
         {
             DrawText("u lost", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
             DrawText("press Space to start the game", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2 + 30, 30, WHITE);
@@ -136,32 +136,31 @@ void run()
 
         switch (currentScreen)
         {
-            case LOGO:
-                DrawText("made by pigeon", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
-                framesCounter++;
-                break;
-            case TITLE:
-                DrawText("press Space to start the game", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
-                ClearBackground(BLACK);
-                if (IsKeyDown(KEY_SPACE)) { currentScreen = GAMEPLAY; }
-                break;
-            case GAMEPLAY:
-                if (!snake.dead) {
-                    InputManager();
-                    mouvement();
-                }
+        case LOGO:
+            DrawText("made by pigeon", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
+            framesCounter++;
+            break;
+        case TITLE:
+            DrawText("press Space to start the game", SCREENWIDTH / 2 - 30, SCREENHEIGHT / 2, 30, WHITE);
+            ClearBackground(BLACK);
+            if (IsKeyDown(KEY_SPACE)) { currentScreen = GAMEPLAY; }
+            break;
+        case GAMEPLAY:
+            if (!snake.dead) {
+                InputManager();
+                mouvement();
+            }
 
-                snake.DrawPlayer();
+            snake.DrawPlayer();
 
-                if (!snake.hasEaten) {
-                    snake.spawnFood();
-                }
+            if (!snake.hasEaten) {
+                snake.spawnFood();
+            }
 
-                DrawRectangle(snake.foodPosX, snake.foodPosY, cellSize, cellSize, GREEN);
+            DrawRectangle(snake.foodPosX, snake.foodPosY, cellSize, cellSize, GREEN);
 
         }
 
         EndDrawing();
     }
 }
-

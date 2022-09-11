@@ -13,7 +13,7 @@ public:
 	void DrawPlayer();
 	void spawnFood();
 	void DrawFood(Vector2 pos);
-	
+
 	bool dead = false;
 	bool hasEaten = false;
 	int foodPosX;
